@@ -17,6 +17,17 @@ exports.basictest = function(si,done) {
 
     async.series(
       {
+        init0: function(fin) {
+          cache.delete({key: 'a'}, function(err, out) {
+            if(err) return fin(err);
+
+            cache.delete({key: 'b'}, function(err, out) {
+              if(err) return fin(err);
+              fin();
+            });
+          });
+        },
+
         set0: function(fin) {
           cache.set({key: 'a', val: '1'}, function(err, out) {
             if(err) return fin(err);
@@ -35,7 +46,7 @@ exports.basictest = function(si,done) {
 
 
         add0: function(fin) {
-          cache.add({key: 'b', val: 1}, function(err, out) {
+          cache.add({key: 'b', val: 2}, function(err, out) {
             if(err) return fin(err);
             assert.equal(out, 'b');
             fin();
@@ -44,11 +55,11 @@ exports.basictest = function(si,done) {
 
         refuse_existing0: function(fin) {
           cache.add({key: 'b', val: 'something'}, function(err, out) {
-            if(err) return fin(err);
+            if(!err) return fin(new Error('refuse_existing0'));
 
             cache.get({key: 'b'}, function(err, out) {
               if(err) return fin(err);
-              assert.equal(out, 1);
+              assert.equal(out, 2);
               fin();
             });
           });
@@ -58,7 +69,7 @@ exports.basictest = function(si,done) {
           cache.incr({key: 'b', val: 4}, function(err, out) {
             if(err) return fin(err);
 
-            assert.equal(out, 5);
+            assert.equal(out, 6);
             fin();
           });
         },
@@ -67,22 +78,7 @@ exports.basictest = function(si,done) {
           cache.decr({key: 'b', val: 3}, function(err, out) {
             if(err) return fin(err);
 
-            assert.equal(out, 2);
-            fin();
-          });
-        },
-
-        only_incr_int0: function(fin) {
-          cache.incr({key: 'a', val: 1}, function(err, out) {
-            assert.ok(err)
-            fin();
-          });
-        },
-
-
-        only_decr_int0: function(fin) {
-          cache.decr({key: 'a', val: 1}, function(err, out) {
-            assert.ok(err)
+            assert.equal(out, 3);
             fin();
           });
         },
@@ -92,9 +88,9 @@ exports.basictest = function(si,done) {
             if(err) return fin(err);
             assert(out, 'a');
 
-            cache.has({key: 'a'}, function(err, out) {
+            cache.get({key: 'a'}, function(err, out) {
               if(err) return fin(err);
-              assert.equal(out, false);
+              assert.ok(!out);
               fin();
             });
           });
@@ -105,9 +101,9 @@ exports.basictest = function(si,done) {
             if(err) return fin(err);
             assert(out, 'a');
 
-            cache.has({key: 'b'}, function(err, out) {
+            cache.get({key: 'b'}, function(err, out) {
               if(err) return fin(err);
-              assert.equal(out, false);
+              assert.ok(!out);
               fin();
             });
           });
