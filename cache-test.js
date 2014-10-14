@@ -111,7 +111,16 @@ exports.basictest = function(si,done) {
               fin();
             });
           });
+        },
+
+        native0: function(fin){
+          si.act('role:cache,get:native',function(err,native){
+            if(err) return fin(err);
+            assert.ok(native)
+            fin()
+          })
         }
+
       },
       done)
   })
