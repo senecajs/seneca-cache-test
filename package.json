@@ -1,6 +1,6 @@
 {
   "name": "seneca-cache-test",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Standard test cases for seneca caches",
   "main": "cache-test.js",
   "scripts": {
