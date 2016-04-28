@@ -43,6 +43,6 @@ Licensed under [MIT][].
 [david-badge]: https://david-dm.org/rjrodger/seneca-cache-test.svg
 [david-url]: https://david-dm.org/rjrodger/seneca-cache-test
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
-[gitter-url]: https://gitter.im/rjrodger/seneca
+[gitter-url]: https://gitter.im/senecajs/seneca
 [travis-badge]: https://travis-ci.org/rjrodger/seneca-cache-test.svg
 [travis-url]: https://travis-ci.org/rjrodger/seneca-cache-test
