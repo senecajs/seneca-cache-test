@@ -1,6 +1,6 @@
 ![Seneca](http://senecajs.org/files/assets/seneca-logo.png)
 
-# seneca-cache-test - a [Seneca](http://senecajs.org) plugin
+# seneca-cache-test
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Dependency Status][david-badge]][david-url]
@@ -39,7 +39,7 @@ testing, or new features please get in touch.
 Copyright (c) 2013-2016, Richard Rodger and other contributors.
 Licensed under [MIT][].
 
-[MIT]: .LICENSE
+[MIT]: ./LICENSE
 [Senecajs org]: https://github.com/senecajs/
 [npm-badge]: https://img.shields.io/npm/v/seneca-cache-test.svg
 [npm-url]: https://npmjs.com/package/seneca-cache-test

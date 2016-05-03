@@ -4,6 +4,8 @@
   "description": "Standard test cases for seneca caches",
   "main": "cache-test.js",
   "scripts": {
+    "lint": "lab -dL",
+    "test": "lab -v -P test -L"
   },
   "repository": {
     "type": "git",
@@ -17,9 +19,7 @@
   "author": "Richard Rodger (http://richardrodger.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "~0.9.0",
-    "babel-eslint": "6.0.4",
-    "eslint-plugin-react": "5.0.1"
+    "async": "~0.9.0"
   },
   "files": [
     "README.md",
