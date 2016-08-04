@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/rjrodger/seneca-cache-test.git"
+    "url": "git://github.com/senecajs/seneca-cache-test.git"
   },
   "keywords": [
     "seneca",
