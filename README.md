@@ -43,9 +43,9 @@ Licensed under [MIT][].
 [Senecajs org]: https://github.com/senecajs/
 [npm-badge]: https://img.shields.io/npm/v/seneca-cache-test.svg
 [npm-url]: https://npmjs.com/package/seneca-cache-test
-[david-badge]: https://david-dm.org/rjrodger/seneca-cache-test.svg
-[david-url]: https://david-dm.org/rjrodger/seneca-cache-test
+[david-badge]: https://david-dm.org/senecajs/seneca-cache-test.svg
+[david-url]: https://david-dm.org/senecajs/seneca-cache-test
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/senecajs/seneca
-[travis-badge]: https://travis-ci.org/rjrodger/seneca-cache-test.svg
-[travis-url]: https://travis-ci.org/rjrodger/seneca-cache-test
+[travis-badge]: https://travis-ci.org/senecajs/seneca-cache-test.svg
+[travis-url]: https://travis-ci.org/senecajs/seneca-cache-test
