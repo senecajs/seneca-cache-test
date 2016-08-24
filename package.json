@@ -20,7 +20,7 @@
   "author": "Richard Rodger (http://richardrodger.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "~2.0.1"
+    "async": "2.0.x"
   },
   "files": [
     "README.md",
@@ -28,8 +28,9 @@
     "cache-test.js"
   ],
   "devDependencies": {
-    "eslint-config-seneca": "3.0.x",
-    "eslint-plugin-standard": "2.0.x",
+    "eslint-config-seneca": "3.x.x",
+    "eslint-plugin-hapi": "4.x.x",
+    "eslint-plugin-standard": "2.x.x",
     "lab": "11.0.x"
   }
 }
