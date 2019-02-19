@@ -6,6 +6,7 @@
 [![Dependency Status][david-badge]][david-url]
 [![Gitter][gitter-badge]][gitter-url]
 
+
 ## Description
 
 This module provides a standard set of tests for Seneca caches. It is used to verify that a cache meets the minimum requirements needed for the Seneca cache message patterns. See the [seneca-cache](http://github.com/senecajs/seneca-cache) article for more information.
