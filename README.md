@@ -1,6 +1,6 @@
 ![Seneca](http://senecajs.org/files/assets/seneca-logo.png)
 
-# seneca-cache-test
+# @seneca/cache-test
 [![npm version][npm-badge]][npm-url]
 [![Build Status][travis-badge]][travis-url]
 [![Dependency Status][david-badge]][david-url]
@@ -22,7 +22,7 @@ Supports Seneca versions **1.x** - **3.x**
 ## Install
 
 ```sh
-npm install seneca-cache-test
+npm install @seneca/cache-test
 ```
 
 ## Usage
@@ -41,8 +41,8 @@ Licensed under [MIT][].
 
 [MIT]: ./LICENSE
 [Senecajs org]: https://github.com/senecajs/
-[npm-badge]: https://img.shields.io/npm/v/seneca-cache-test.svg
-[npm-url]: https://npmjs.com/package/seneca-cache-test
+[npm-badge]: https://img.shields.io/npm/v/@seneca/cache-test.svg
+[npm-url]: https://npmjs.com/package/@seneca/cache-test
 [david-badge]: https://david-dm.org/senecajs/seneca-cache-test.svg
 [david-url]: https://david-dm.org/senecajs/seneca-cache-test
 [gitter-badge]: https://badges.gitter.im/Join%20Chat.svg
