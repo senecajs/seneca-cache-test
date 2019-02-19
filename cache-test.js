@@ -78,6 +78,19 @@ exports.basictest = function(si, done) {
           })
         },
 
+        // key does not exist
+        incr1: function(fin) {
+          si.act('role:cache,cmd:incr', { key: 'q', val: 1 }, function(
+            err,
+            out
+          ) {
+            if (err) return fin(err)
+
+            Assert.equal(out.value, false)
+            fin()
+          })
+        },
+
         decr0: function(fin) {
           si.act('role:cache,cmd:decr', { key: 'b', val: 3 }, function(
             err,
