@@ -23,7 +23,7 @@
   "author": "Richard Rodger (http://richardrodger.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "^2.6.2"
+    "async": "^3.0.1"
   },
   "files": [
     "README.md",
@@ -31,7 +31,8 @@
     "cache-test.js"
   ],
   "devDependencies": {
+    "@hapi/lab": "^19.0.1",
     "lab": "^18.0.2",
-    "prettier": "^1.16.4"
+    "prettier": "^1.17.1"
   }
 }

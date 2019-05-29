@@ -37,7 +37,7 @@ exports.basictest = function(si, done) {
             out
           ) {
             if (err) return fin(err)
-            Assert(out, ka)
+            Assert.equal(out.key, ka)
             fin()
           })
         },
@@ -48,7 +48,7 @@ exports.basictest = function(si, done) {
             out
           ) {
             if (err) return fin(err)
-            Assert(out, kc)
+            Assert.equal(out.key, kc)
             fin()
           })
         },
@@ -170,6 +170,18 @@ exports.basictest = function(si, done) {
             Assert(out, 1)
 
             si.act('role:cache,cmd:get', { key: kz }, function(err, out) {
+              if (err) return fin(err)
+              Assert.ok(null == out.value)
+              fin()
+            })
+          })
+        },
+
+        clear: function(fin) {
+          si.act('role:cache,cmd:clear', function(err, out) {
+            if (err) return fin(err)
+
+            si.act('role:cache,cmd:get', { key: kc }, function(err, out) {
               if (err) return fin(err)
               Assert.ok(null == out.value)
               fin()
