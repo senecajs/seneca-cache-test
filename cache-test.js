@@ -10,6 +10,7 @@ exports.basictest = function(si, done) {
 
     var ka = 'a-' + Math.random()
     var kb = 'b-' + Math.random()
+    var kc = 'c-' + Math.random()
     var kq = 'q-' + Math.random()
     var kz = 'z-' + Math.random()
 
@@ -21,7 +22,11 @@ exports.basictest = function(si, done) {
 
             si.act('role:cache,cmd:delete', { key: kb }, function(err, out) {
               if (err) return fin(err)
-              fin()
+
+              si.act('role:cache,cmd:delete', { key: kc }, function(err, out) {
+                if (err) return fin(err)
+                fin()
+              })
             })
           })
         },
@@ -33,6 +38,17 @@ exports.basictest = function(si, done) {
           ) {
             if (err) return fin(err)
             Assert(out, ka)
+            fin()
+          })
+        },
+
+        set_c: function(fin) {
+          si.act('role:cache,cmd:set', { key: kc, val: '3' }, function(
+            err,
+            out
+          ) {
+            if (err) return fin(err)
+            Assert(out, kc)
             fin()
           })
         },
