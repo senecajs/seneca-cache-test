@@ -1,12 +1,12 @@
 {
   "name": "@seneca/cache-test",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Standard test cases for seneca caches",
   "main": "cache-test.js",
   "scripts": {
-    "test": "lab -P test -I URL,URLSearchParams,igUint64Array,BigInt64Array,BigInt,BigUint64Array",
-    "prettier": "prettier --write --no-semi --single-quote *.js lib/*.js test/*.js",
-    "coveralls": "lab -s -P test -r lcov | coveralls",
+    "test": "node --test test/cache.test.js",
+    "examples": "node docs/examples/mem-cache.js && node --test docs/examples/cache.test.js",
+    "prettier": "prettier --write --no-semi --single-quote *.js test/*.js docs/examples/*.js",
     "clean-npm": "rm -rf node_modules package-lock.json",
     "repo-tag": "REPO_VERSION=`node -e \"console.log(require('./package').version)\"` && echo TAG: v$REPO_VERSION && git commit -a -m v$REPO_VERSION && git push && git tag v$REPO_VERSION && git push --tags;",
     "repo-publish": "npm run prettier && npm test && npm run repo-tag && npm publish --access public"
@@ -23,16 +23,16 @@
   "author": "Richard Rodger (http://richardrodger.com)",
   "license": "MIT",
   "dependencies": {
-    "async": "^3.0.1"
+    "async": "^3.2.6"
   },
   "files": [
     "README.md",
+    "LICENSE",
     "LICENSE.txt",
     "cache-test.js"
   ],
   "devDependencies": {
-    "@hapi/lab": "^19.0.1",
-    "lab": "^18.0.2",
-    "prettier": "^1.17.1"
+    "prettier": "^3.6.2",
+    "seneca": "^4.0.0-rc5"
   }
 }
