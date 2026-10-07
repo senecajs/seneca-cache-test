@@ -29,7 +29,8 @@
     "README.md",
     "LICENSE",
     "LICENSE.txt",
-    "cache-test.js"
+    "cache-test.js",
+    "docs"
   ],
   "devDependencies": {
     "prettier": "^3.6.2",

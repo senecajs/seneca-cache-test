@@ -36,9 +36,11 @@ What it does, in order:
    initialization have finished. The callback form works on Seneca 3,
    on Seneca 4.0.0-rc5 (where `await seneca.ready()` on an idle instance
    does not resolve) and on later versions.
-2. Generates five random keys, so that the cases can run against a
-   shared cache server without interfering with other data or with a
-   parallel run.
+2. Generates five random keys for the values it sets, so that leftovers
+   from an earlier run do not break the cases. The random keys do not
+   make parallel runs safe: the `clear` case sends an unscoped
+   `role:cache,cmd:clear`, which removes every key in the cache. Run the
+   suite against a dedicated, empty cache, one run at a time.
 3. Runs the fifteen cases listed in [Cases in order](messages.md#cases-in-order)
    one after the other, with `async.series`. Each case sends one or more
    `role:cache` messages with `seneca.act` and checks the replies with

@@ -41,8 +41,9 @@ test('standard cache tests', function (t, done) {
   const seneca = Seneca().test().quiet().use(my_cache)
 
   CacheTest.basictest(seneca, function (err) {
-    if (err) return done(err)
-    seneca.close(done)
+    seneca.close(function () {
+      done(err)
+    })
   })
 })
 ```

@@ -23,11 +23,13 @@ const my_cache = require('..')
 it('standard cache tests', async () => {
   const seneca = Seneca().test().quiet().use(my_cache)
 
-  await new Promise((resolve, reject) => {
-    CacheTest.basictest(seneca, (err) => (err ? reject(err) : resolve()))
-  })
-
-  await seneca.close()
+  try {
+    await new Promise((resolve, reject) => {
+      CacheTest.basictest(seneca, (err) => (err ? reject(err) : resolve()))
+    })
+  } finally {
+    await seneca.close()
+  }
 })
 ```
 
@@ -61,8 +63,9 @@ test('standard cache tests', (done) => {
   const seneca = Seneca().test().quiet().use(my_cache)
 
   CacheTest.basictest(seneca, (err) => {
-    if (err) return done(err)
-    seneca.close(done)
+    seneca.close(function () {
+      done(err)
+    })
   })
 })
 ```
@@ -92,8 +95,9 @@ describe('cache', function () {
     const seneca = Seneca().test().quiet().use(my_cache)
 
     CacheTest.basictest(seneca, function (err) {
-      if (err) return done(err)
-      seneca.close(done)
+      seneca.close(function () {
+        done(err)
+      })
     })
   })
 })

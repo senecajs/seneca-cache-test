@@ -26,9 +26,11 @@ describe('cache-test', function () {
     const seneca = make_seneca()
 
     CacheTest.basictest(seneca, function (err, results) {
-      if (err) return done(err)
-      Assert.equal(typeof results, 'object')
-      seneca.close(done)
+      seneca.close(function () {
+        if (err) return done(err)
+        Assert.equal(typeof results, 'object')
+        done()
+      })
     })
   })
 
@@ -37,10 +39,15 @@ describe('cache-test', function () {
     const seneca = make_seneca()
 
     CacheTest.basictest(seneca, function (err) {
-      if (err) return done(err)
+      if (err) {
+        return seneca.close(function () {
+          done(err)
+        })
+      }
       CacheTest.basictest(seneca, function (err) {
-        if (err) return done(err)
-        seneca.close(done)
+        seneca.close(function () {
+          done(err)
+        })
       })
     })
   })

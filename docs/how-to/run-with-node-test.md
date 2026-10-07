@@ -28,8 +28,9 @@ test('standard cache tests', function (t, done) {
   const seneca = Seneca().test().quiet().use(my_cache)
 
   CacheTest.basictest(seneca, function (err) {
-    if (err) return done(err)
-    seneca.close(done)
+    seneca.close(function () {
+      done(err)
+    })
   })
 })
 ```
@@ -82,8 +83,9 @@ for (const [name, options] of Object.entries(configs)) {
   test('standard cache tests: ' + name, function (t, done) {
     const seneca = Seneca().test().quiet().use(my_cache, options)
     CacheTest.basictest(seneca, function (err) {
-      if (err) return done(err)
-      seneca.close(done)
+      seneca.close(function () {
+        done(err)
+      })
     })
   })
 }
