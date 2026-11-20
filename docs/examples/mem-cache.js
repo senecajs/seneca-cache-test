@@ -86,10 +86,7 @@ if (require.main === module) {
     // quiet(): the refused add below is logged at level error otherwise
     const seneca = Seneca().test().quiet().use(mem_cache)
 
-    // Callback form: `await seneca.ready()` hangs on an idle 4.0.0-rc5 instance
-    await new Promise(function (resolve) {
-      seneca.ready(resolve)
-    })
+    await seneca.ready()
 
     console.log(
       await seneca.post('role:cache,cmd:set', { key: 'color', val: 'red' }),

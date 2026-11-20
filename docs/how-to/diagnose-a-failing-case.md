@@ -10,7 +10,7 @@ object is described in
 
 The error passed to the completion callback names the failing case in
 `err.cache_test_case` and at the start of its message. It is one of
-four kinds. The examples are real output from Seneca 4.0.0-rc5.
+four kinds. The examples are real output from Seneca 4.
 
 A check failed (`code: 'ERR_ASSERTION'`, with `actual` and `expected`):
 
@@ -37,8 +37,8 @@ code):
 
 | Code | Message (shortened) | Meaning |
 | ---- | ------------------- | ------- |
-| `act_not_found` | `No matching action pattern found for { key: 'a-0.48', role: 'cache', cmd: 'delete' }, and no default result provided` | The plugin has no action for that pattern, or was not loaded. |
-| `result_not_objarr` | `Action cmd:set,role:cache responded with result that was not an object or array: a-0.43; Use option strict:{result:false} to allow` | The action replied with a string or number instead of an object. |
+| `act_not_found` | `No matching action pattern found for cmd:delete,role:cache (other keys: key), and no default result provided` | The plugin has no action for that pattern, or was not loaded. |
+| `result_not_objarr` | `Action cmd:set,role:cache responded with a result that was not an object or array (type: string); use option strict:{result:false} to allow` | The action replied with a string or number instead of an object. |
 | `action_timeout` | `Action cmd:clear,role:cache timed out. Timeout was: 22222` | The action never called `reply`. |
 
 A reply was `null` where an object was expected:
@@ -114,17 +114,14 @@ The run passed but the test process stays alive: the plugin holds a
 connection that is not released on `seneca.close()`.
 
 * Close the instance in the completion callback: `seneca.close(done)`.
-* Release the client in a close hook. Seneca 4 closes through
-  `sys:seneca,cmd:close`; a hook on the Seneca 3 pattern
-  `role:seneca,cmd:close` is not called on Seneca 4.0.0-rc5. See
-  [Close hooks](test-on-seneca-3-and-4.md#close-hooks).
+* Release the client in a close hook, registered with
+  `this.destroy(fn)`. Seneca 4 closes through `sys:seneca,cmd:close`.
+  See [Close hooks](upgrade-a-cache-plugin-to-seneca-4.md#close-hooks).
 
-## Seneca 3 differences
+## Errors replied by the plugin
 
-On Seneca 3 (default `legacy.error: true`) an error replied by the
-plugin reaches the callback wrapped: the message reads
-`seneca: Action role:cache,cmd:add failed: Key x exists.` and the
-plugin's error is `err.orig`. On Seneca 4 the plugin's error arrives as
-it is. The cases do not depend on this, since they only require that an
-error is replied; your own assertions on messages should use
-`(err.orig || err).message` when they must run on both versions.
+On Seneca 4 an error replied by the plugin reaches the callback as it
+is: `err.code` and `err.message` are the plugin's own, and there is no
+`err.orig`. Seneca 3 wrapped it by default. The cases do not depend on
+this, since they only require that an error is replied; assert on
+`err.code` in your own tests.

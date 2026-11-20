@@ -4,7 +4,7 @@ How to run the standard cache tests from a test framework other than
 `node:test`. `basictest(seneca, done)` is a plain function with a
 completion callback, so any framework that can wait for a callback or a
 promise can run it. The examples below were run with `@hapi/lab` 26.0.1,
-`jest` 29.7.0 and `mocha` 11.8.0 on Node.js 24 with `seneca@4.0.0-rc5`.
+`jest` 29.7.0 and `mocha` 11.8.0 on Node.js 24 with Seneca 4.
 
 ## @hapi/lab
 
@@ -45,9 +45,7 @@ Notes:
 * Lab 26 recognizes the Node.js 24 globals, so its leak detection
   passes without flags. If an older lab reports Node.js globals as
   leaks, add `-l`.
-* `await seneca.close()` needs Seneca 4 (or Seneca 3 with
-  `seneca-promisify`). For plain Seneca 3 use
-  `await new Promise((resolve) => seneca.close(resolve))`.
+* `await seneca.close()` returns a promise on Seneca 4.
 
 ## jest
 

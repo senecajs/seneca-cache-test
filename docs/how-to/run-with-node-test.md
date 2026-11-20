@@ -7,11 +7,10 @@ runner. For other runners see
 ## 1. Install
 
 ```sh
-npm install --save-dev @seneca/cache-test seneca
+npm install --save-dev seneca@^4 @seneca/cache-test
 ```
 
-Node.js 22 or later is needed for Seneca 4; `node --test` itself exists
-since Node.js 18.
+Seneca 4 needs Node.js 24 or later.
 
 ## 2. Write the test
 
@@ -53,8 +52,7 @@ test('standard cache tests', function (t, done) {
 }
 ```
 
-`npm test` then runs it. On Node.js 24 the output uses the `spec`
-format; on Node.js 22 it is TAP when the output is not a terminal.
+`npm test` then runs it. The output uses the `spec` format.
 
 ## Timeouts
 
@@ -110,7 +108,7 @@ const seneca = Seneca().test().quiet().use(my_cache, {
 The cases clear the whole cache, so point them at a server that holds no
 data you need. If the process does not exit after the test, the plugin
 has not released its connection on close: see
-[Test a cache plugin on Seneca 3 and 4](test-on-seneca-3-and-4.md#close-hooks).
+[Upgrade a cache plugin to Seneca 4](upgrade-a-cache-plugin-to-seneca-4.md#close-hooks).
 
 ## Coverage
 

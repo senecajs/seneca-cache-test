@@ -8,19 +8,19 @@ plugins do, and a test that proves it.
 
 The finished files are in [examples](../examples/): `mem-cache.js` and
 `cache.test.js`. The output shown below is from running them with
-Node.js 24.21.0 and `seneca@4.0.0-rc5`.
+Node.js 24 and Seneca 4.
 
 ## Before you start
 
-You need Node.js 22 or later and an empty directory with a
+You need Node.js 24 or later and an empty directory with a
 `package.json` (`npm init -y`). Install Seneca and the test cases:
 
 ```sh
-npm install --save-dev seneca@^4.0.0-rc5 @seneca/cache-test
+npm install --save-dev seneca@^4 @seneca/cache-test
 ```
 
-Seneca 3 works as well; see
-[Test a cache plugin on Seneca 3 and 4](../how-to/test-on-seneca-3-and-4.md).
+To move an existing Seneca 3 plugin, see
+[Upgrade a cache plugin to Seneca 4](../how-to/upgrade-a-cache-plugin-to-seneca-4.md).
 
 ## 1. The messages a cache plugin answers
 
@@ -157,10 +157,7 @@ if (require.main === module) {
     // quiet(): the refused add below is logged at level error otherwise
     const seneca = Seneca().test().quiet().use(mem_cache)
 
-    // Callback form: `await seneca.ready()` hangs on an idle 4.0.0-rc5 instance
-    await new Promise(function (resolve) {
-      seneca.ready(resolve)
-    })
+    await seneca.ready()
 
     console.log(
       await seneca.post('role:cache,cmd:set', { key: 'color', val: 'red' }),
@@ -285,9 +282,6 @@ Make it the test script of the package:
 }
 ```
 
-On Node.js 22 the output is in TAP format when it is not written to a
-terminal; the result is the same.
-
 ## 6. Break it on purpose
 
 Change one line in `incrdecr` in `mem-cache.js`, so that an unknown key
@@ -366,7 +360,7 @@ instance.
   timeouts, several configurations, a real cache server, coverage.
 * [Run the tests with lab, jest or mocha](../how-to/run-with-lab-or-jest.md)
   if your plugin uses another test framework.
-* [Test a cache plugin on Seneca 3 and 4](../how-to/test-on-seneca-3-and-4.md)
-  if the plugin must support both.
+* [Upgrade a cache plugin to Seneca 4](../how-to/upgrade-a-cache-plugin-to-seneca-4.md)
+  if the plugin was written for Seneca 3.
 * [Why a shared conformance suite](../explanation/conformance-suite.md)
   explains the design of the contract.

@@ -11,7 +11,7 @@ development dependency of this repository, so `npm install` provides it.
 | `mem-cache.js` | An in-memory cache plugin that passes the standard tests. Run it directly for a short demonstration. |
 | `cache.test.js` | The standard tests run against `mem-cache.js` with `node --test`. |
 
-Run them with Node.js 22 or later:
+Run them with Node.js 24 or later:
 
 ```sh
 node docs/examples/mem-cache.js

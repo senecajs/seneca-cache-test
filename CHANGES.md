@@ -1,3 +1,19 @@
+## 3.0.0 2026-11-20
+
+* Seneca 4: the peer dependency is `seneca` `^4.0.0`. Seneca 3 users stay
+  on `@seneca/cache-test@2`. The test cases are unchanged.
+* Node.js 24 or later (`engines.node` `>=24`).
+* 2.1.0 was not published. Its changes, listed in the 2.1.0 entry below,
+  are part of 3.0.0, among them failures reported through the completion
+  callback with the case name in `err.cache_test_case`.
+* The development dependency is `seneca` `^4.0.0` (was `^4.0.0-rc5`).
+  `package-lock.json` is no longer committed. `CHANGES.md` is published.
+* Documentation: the guide "Test a cache plugin on Seneca 3 and 4" is
+  replaced by "Upgrade a cache plugin to Seneca 4", which covers the
+  peer range, closed option defaults, close hooks with `this.destroy`
+  and the `SENECA_DEP_*` warnings. The 4.0.0-rc5 work-arounds are
+  removed, and the examples use `await seneca.ready()`.
+
 ## 2.1.0 2026-10-07
 
 * Seneca 4 prerelease support: the test cases run on `seneca@4.0.0-rc5`
