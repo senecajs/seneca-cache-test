@@ -21,7 +21,7 @@ The programs from the tutorial are in [examples](examples/).
 | [Run the tests with node:test](how-to/run-with-node-test.md) | Test file, `npm test` script, timeouts, several configurations, a real cache server, coverage. |
 | [Run the tests with lab, jest or mocha](how-to/run-with-lab-or-jest.md) | The same test for `@hapi/lab`, `jest` and `mocha`. |
 | [Diagnose a failing standard case](how-to/diagnose-a-failing-case.md) | Reading the error, finding the case, reproducing one message, common causes. |
-| [Test a cache plugin on Seneca 3 and 4](how-to/test-on-seneca-3-and-4.md) | Dependency ranges, running against both versions, what differs in plugin code. |
+| [Upgrade a cache plugin to Seneca 4](how-to/upgrade-a-cache-plugin-to-seneca-4.md) | Dependency ranges, deprecation warnings, what changes in plugin code. |
 
 ## Reference
 
@@ -34,7 +34,7 @@ The programs from the tutorial are in [examples](examples/).
 
 | Explanation | Topic |
 | ----------- | ----- |
-| [Why a shared conformance suite](explanation/conformance-suite.md) | Interchangeable caches, the `role:cache` protocol and its design choices, how the suite is built, Seneca 3 versus 4, limits, history. |
+| [Why a shared conformance suite](explanation/conformance-suite.md) | Interchangeable caches, the `role:cache` protocol and its design choices, how the suite is built, what Seneca 4 changes for cache plugins, limits, history. |
 
 ## Feature index
 
@@ -59,8 +59,8 @@ no command line.
 | `role:cache,get:native` | message sent to the plugin | [Messages](reference/messages.md#rolecachegetnative) |
 | `init0` to `native0` | the fifteen cases of `basictest`, in order | [Messages](reference/messages.md#cases-in-order) |
 | Random keys (`a-`, `b-`, `c-`, `q-`, `z-` prefixes) | test data | [Messages](reference/messages.md#keys-and-values), [explanation](explanation/conformance-suite.md#design-choices) |
-| Seneca 3.x and 4.x (from 4.0.0-rc5) | supported Seneca versions | [Test a cache plugin on Seneca 3 and 4](how-to/test-on-seneca-3-and-4.md), [explanation](explanation/conformance-suite.md#seneca-3-and-seneca-4) |
-| Node.js 24 and 22 | tested Node.js versions | [README](../README.md#background) |
+| Seneca 4.x (peer dependency `^4.0.0`) | supported Seneca versions | [Upgrade a cache plugin to Seneca 4](how-to/upgrade-a-cache-plugin-to-seneca-4.md), [explanation](explanation/conformance-suite.md#seneca-4) |
+| Node.js 24 or later | supported Node.js versions | [README](../README.md#background) |
 | `async` | runtime dependency (runs the cases in series) | [Functions](reference/functions.md#dependencies) |
 
 ## Other documents

@@ -10,8 +10,8 @@ Standard test cases for Seneca cache plugins. A cache plugin handles the
 `role:cache` messages (`cmd:set`, `cmd:get`, `cmd:add`, `cmd:delete`,
 `cmd:incr`, `cmd:decr`, `cmd:clear` and `get:native`). This package sends
 those messages to your plugin and asserts on the replies, so that every
-cache plugin behaves in the same way. It works with Seneca 3 and with
-Seneca 4 (4.0.0-rc5 and later), and is tested on Node.js 24 and 22.
+cache plugin behaves in the same way. It works with Seneca 4 on Node.js
+24 or later. For Seneca 3 use `@seneca/cache-test` 2.
 
 | ![Voxgig](https://www.voxgig.com/res/img/vgt01r.png) | This open source module is sponsored and supported by [Voxgig](https://www.voxgig.com). |
 |---|---|
@@ -19,12 +19,12 @@ Seneca 4 (4.0.0-rc5 and later), and is tested on Node.js 24 and 22.
 ## Install
 
 ```sh
-npm install --save-dev @seneca/cache-test
+npm install --save-dev seneca@^4 @seneca/cache-test
 ```
 
-The test cases receive a Seneca instance from your test, so this package
-does not depend on `seneca` itself: it runs with whichever Seneca version
-your plugin is tested with.
+The test cases receive a Seneca instance from your test. `seneca`
+`^4.0.0` is a peer dependency, so install it as a development dependency
+of your plugin.
 
 ## Quick Example
 
@@ -59,7 +59,7 @@ and calls back with the first failure. The error names the failing case
 * [Run the tests with node:test](docs/how-to/run-with-node-test.md)
 * [Run the tests with lab, jest or mocha](docs/how-to/run-with-lab-or-jest.md)
 * [Diagnose a failing standard case](docs/how-to/diagnose-a-failing-case.md)
-* [Test a cache plugin on Seneca 3 and 4](docs/how-to/test-on-seneca-3-and-4.md)
+* [Upgrade a cache plugin to Seneca 4](docs/how-to/upgrade-a-cache-plugin-to-seneca-4.md)
 * The runnable programs are in [docs/examples](docs/examples/).
 
 ## Motivation
@@ -110,29 +110,19 @@ new features please get in touch.
 
 ### Running tests
 
-The tests use the Node.js built-in test runner and run on Node.js 24
-(the default target) and 22, with the Seneca 4 prerelease installed as a
-development dependency (`seneca@^4.0.0-rc5`):
+The tests use the Node.js built-in test runner on Node.js 24 or later,
+with Seneca 4 installed as a development dependency (`seneca@^4.0.0`):
 
 ```sh
 npm install
 npm test
 ```
 
-To run the test cases against another Seneca version, for example
-Seneca 3:
-
-```sh
-npm install --no-save seneca@3
-npm test
-npm install   # restores the development dependency
-```
-
 `npm run examples` runs the programs in [docs/examples](docs/examples/),
 and `npm run prettier` formats the code.
 
-Continuous integration runs the same `npm test` on Node.js 24 and 22.
-The GitHub Actions workflow is delivered as a patch in
+Continuous integration runs the same `npm test`. The GitHub Actions
+workflow is delivered as a patch in
 [.patches](.patches/README.md) (see that file for how to apply it).
 
 ## Background
@@ -146,8 +136,8 @@ to verify that they implement the same `role:cache` contract.
 
 | | Supported |
 | - | --------- |
-| Seneca | 3.x, and 4.x from 4.0.0-rc5 (the instance is supplied by your test) |
-| Node.js | tested on 24 and 22 |
+| Seneca | 4.x, peer dependency `^4.0.0` (the instance is supplied by your test). Seneca 3: `@seneca/cache-test` 2 |
+| Node.js | 24 or later |
 | Test runners | any; the API is a function with a completion callback (verified with node:test, @hapi/lab 26, jest 29 and mocha 11) |
 
 See [CHANGES.md](CHANGES.md) for the change history.

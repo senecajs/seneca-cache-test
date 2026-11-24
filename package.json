@@ -1,6 +1,6 @@
 {
   "name": "@seneca/cache-test",
-  "version": "2.1.0",
+  "version": "3.0.0",
   "description": "Standard test cases for seneca caches",
   "main": "cache-test.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/senecajs/seneca-cache-test.git"
+    "url": "git+https://github.com/senecajs/seneca-cache-test.git"
   },
   "keywords": [
     "seneca",
@@ -27,13 +27,23 @@
   },
   "files": [
     "README.md",
+    "CHANGES.md",
     "LICENSE",
     "LICENSE.txt",
     "cache-test.js",
     "docs"
   ],
+  "peerDependencies": {
+    "seneca": "^4.0.0"
+  },
   "devDependencies": {
     "prettier": "^3.6.2",
-    "seneca": "^4.0.0-rc5"
+    "seneca": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

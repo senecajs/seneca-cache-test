@@ -99,7 +99,7 @@ The first failure ends the run.
 Three details make failures diagnosable:
 
 * **Assertions run inside a `try`/`catch`.** A check runs inside a
-  Seneca action callback. Seneca 3 and 4 catch an exception thrown
+  Seneca action callback. Seneca catches an exception thrown
   there, log it as an `act_callback` error, and do not call the callback
   again. An assertion that simply threw would never reach `done`; the
   test would wait for its timeout with only a log entry as a clue. The
@@ -112,21 +112,22 @@ Three details make failures diagnosable:
   callback context, so an exception thrown by the test's own callback is
   not swallowed either.
 
-## Seneca 3 and Seneca 4
+## Seneca 4
 
-The suite runs unchanged on Seneca 3.x, 4.0.0-rc5 and 4.0.0, because it
-uses only behaviour that is the same in all of them. The differences
-that matter to cache plugin authors:
+Version 3 of the suite supports Seneca 4 only, and declares the peer
+dependency `seneca` `^4.0.0`. The cases are the same as in version 2,
+which still serves plugins on Seneca 3. The Seneca 4 behaviour that
+matters to cache plugin authors:
 
-| Topic | Seneca 3 | Seneca 4 | Effect on the suite |
-| ----- | -------- | -------- | ------------------- |
-| `ready` | callback or (with `seneca-promisify`) promise | callback or promise; on 4.0.0-rc5 the promise does not resolve on an idle instance | The suite uses the callback form. |
-| Error replies | wrapped by default (`legacy.error: true`): message `seneca: Action ... failed: ...`, original in `err.orig` | the original error | The suite only requires that `cmd:add` on an existing key replies with an error. |
-| Exceptions in callbacks | caught by Seneca, logged as `act_callback`, callback not called again | the same | The reason for the `try`/`catch` and for calling `done` on a fresh tick. |
-| Close hooks | `role:seneca,cmd:close` | `sys:seneca,cmd:close`; on 4.0.0-rc5 `role:seneca` hooks are not called | Plugins holding connections must register the right pattern, or the test process does not exit. |
-| Error handler | `seneca.test(errhandler)` receives action errors | the same | Do not pass the test's `done` to `seneca.test()`: the expected error would fail the test. |
+| Topic | Seneca 4 | Effect on the suite |
+| ----- | -------- | ------------------- |
+| `ready` | callback or promise | The suite uses the callback form. |
+| Error replies | the plugin's original error; Seneca 3 wrapped it, with the original in `err.orig` | The suite only requires that `cmd:add` on an existing key replies with an error. |
+| Exceptions in callbacks | caught by Seneca, logged as `act_callback`, callback not called again | The reason for the `try`/`catch` and for calling `done` on a fresh tick. |
+| Close hooks | `this.destroy(fn)` or a prior on `sys:seneca,cmd:close`; a `role:seneca,cmd:close` hook is deprecated | Plugins holding connections must release them on close, or the test process does not exit. |
+| Error handler | `seneca.test(errhandler)` receives action errors | Do not pass the test's `done` to `seneca.test()`: the expected error would fail the test. |
 
-The [Test a cache plugin on Seneca 3 and 4](../how-to/test-on-seneca-3-and-4.md)
+The [Upgrade a cache plugin to Seneca 4](../how-to/upgrade-a-cache-plugin-to-seneca-4.md)
 guide has the code for each point.
 
 ## What the suite does not cover
@@ -151,7 +152,9 @@ A plugin's own tests cover these for its backend, usually through
   by the first cache plugins (Seneca 0.5 era), with `async` 2.
 * `@seneca/cache-test` 2.0.0: renamed into the `@seneca` scope, `async`
   3.
-* 2.1.0: Seneca 4 prerelease support, failures reported through the
-  callback with the case name, the repository's own tests on `node:test`
-  against an in-memory fixture, and this documentation. See
-  [CHANGES.md](../../CHANGES.md).
+* 2.1.0 (not published; its changes ship in 3.0.0): Seneca 4 prerelease
+  support, failures reported through the callback with the case name,
+  the repository's own tests on `node:test` against an in-memory
+  fixture, and this documentation.
+* 3.0.0: Seneca 4 only, with the peer dependency `seneca` `^4.0.0`, and
+  Node.js 24 or later. See [CHANGES.md](../../CHANGES.md).
